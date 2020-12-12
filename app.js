@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGO_LOGIN_STRING;//'mongodb+srv://levi_atlas_admin:4ojZvldkxRGh9nSs@cluster0.xjinw.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGO_LOGIN_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true}).then(console.info("mongo login success"));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
