@@ -91,9 +91,6 @@ exports.signup = [
 
 exports.login = async (req, res, next) => {
     try {
-        console.log('logging in 1');
-        console.log('logging in, req='+stringify(req));
-        console.log('logging in 2, body='+JSON.stringify(req.body));
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 

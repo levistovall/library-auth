@@ -16,7 +16,7 @@ require("dotenv").config({
  path: path.join(__dirname, "../.env")
 });
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.NODE_PORT || '3000');
 console.log('port is '+port);
 app.set('port', port);
 console.log('set port');
