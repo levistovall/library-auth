@@ -6,7 +6,9 @@
 
 var app = require('../app');
 var debug = require('debug')('locallibrary-auth:server');
+var https = require('https');
 var http = require('http');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -22,10 +24,19 @@ app.set('port', port);
 console.log('set port');
 
 /**
- * Create HTTP server.
+ * Create HTTPS/HTTP server.
  */
+var server;
+if(process.env.PROTOCOL == 'https') {
+  const options = {
+    key: fs.readFileSync(process.env.HTTPS_KEY_FILE),
+    cert: fs.readFileSync(process.env.HTTPS_CERT_FILE)
+  };
 
-var server = http.createServer(app);
+  server = https.createServer(options, app);
+} else {
+  server = http.createServer(app);
+}
 console.log('created server');
 
 /**
